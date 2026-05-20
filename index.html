@@ -1,451 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEDAN | Portfolio</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-
-        /* CSS Variables */
-        :root {
-            --bg-color: #0d0e15;
-            --surface-color: #1a1c29;
-            --text-main: #f0f2f5;
-            --text-muted: #a0a4b8;
-            --accent-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
-            --accent-gradient-2: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
-            --accent-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            --nav-height: 70px;
-        }
-
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            height: var(--nav-height);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            background: rgba(13, 14, 21, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-size: 0.95rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-main);
-        }
-
-        /* Sections General */
-        section {
-            min-height: 100vh;
-            padding: 100px 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: var(--accent-gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Hero Section */
-        #hero {
-            align-items: flex-start;
-            background: radial-gradient(circle at top right, rgba(106, 17, 203, 0.1), transparent 40%),
-                        radial-gradient(circle at bottom left, rgba(37, 117, 252, 0.1), transparent 40%);
-        }
-
-        .hero-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-        }
-
-        .hero-title {
-            font-size: 5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title span {
-            background: var(--accent-gradient-2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 2.5rem;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 30px;
-            background: var(--accent-gradient);
-            color: white;
-            border: none;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: inline-block;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
-        }
-
-        /* About Section */
-        #about {
-            background-color: var(--surface-color);
-        }
-
-        .about-content {
-            display: flex;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 1;
-            font-size: 1.1rem;
-            color: var(--text-muted);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .about-text strong {
-            color: var(--text-main);
-        }
-
-        .about-visual {
-            flex: 1;
-            position: relative;
-        }
-
-        .about-box {
-            width: 100%;
-            height: 350px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 800;
-            color: rgba(255,255,255,0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about-box::before {
-            content: '';
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            background: var(--accent-gradient);
-            filter: blur(80px);
-            border-radius: 50%;
-        }
-
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--surface-color);
-            border-radius: 20px;
-            padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(106, 17, 203, 0.5);
-        }
-
-        .project-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            background: var(--accent-gradient-3);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-
-        .project-desc {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Skills Section */
-        #skills {
-            background-color: var(--surface-color);
-        }
-
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .skill-tag {
-            padding: 12px 25px;
-            border-radius: 30px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-main);
-            transition: all 0.3s ease;
-        }
-
-        .skill-tag:hover {
-            background: var(--accent-gradient);
-            border-color: transparent;
-            transform: scale(1.05);
-        }
-
-        /* Contact Section */
-        #contact {
-            text-align: center;
-        }
-
-        .contact-box {
-            max-width: 600px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            padding: 4rem 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .contact-box p {
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--surface-color);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Can be replaced with a hamburger menu */
-            }
-
-            .hero-title {
-                font-size: 3.5rem;
-            }
-
-            .about-content {
-                flex-direction: column;
-            }
-
-            section {
-                padding: 80px 5%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HEDAN — Arts & Technology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080c10; --bg2: #0d1219; --bg3: #111820;
+      --surface: rgba(255,255,255,0.04); --border: rgba(255,255,255,0.07);
+      --gold: #c9a96e; --gold2: #e8c98a; --ice: #7eb8d4; --ice2: #a8d4e8;
+      --text: #d8dfe8; --muted: #6a7888;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Mono', monospace; background: var(--bg); color: var(--text); overflow-x: hidden; cursor: none; }
+    .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: screen; }
+    .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid rgba(201,169,110,0.4); border-radius: 50%; pointer-events: none; z-index: 9998; transition: all 0.18s ease; mix-blend-mode: screen; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.35; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 500; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; background: rgba(8,12,16,0.7); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.25em; color: var(--gold2); text-decoration: none; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s ease; }
+    .nav-links a:hover { color: var(--gold2); }
+    .nav-links a:hover::after { width: 100%; }
+    #hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 8rem 2rem 4rem; }
+    .orb { position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.18; animation: drift 14s ease-in-out infinite; }
+    .orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, #c9a96e, transparent); top: -10%; left: -15%; animation-delay: 0s; }
+    .orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, #7eb8d4, transparent); bottom: -15%; right: -10%; animation-delay: -5s; }
+    .orb-3 { width: 350px; height: 350px; background: radial-gradient(circle, #a06060, transparent); top: 40%; left: 55%; animation-delay: -9s; }
+    @keyframes drift { 0%, 100% { transform: translate(0,0) scale(1); } 33% { transform: translate(30px,-40px) scale(1.05); } 66% { transform: translate(-20px,20px) scale(0.97); } }
+    #hero::after { content: ''; position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black, transparent); }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 860px; }
+    .hero-tag { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+    .hero-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(5rem,14vw,11rem); font-weight: 300; line-height: 0.9; letter-spacing: 0.08em; color: transparent; background: linear-gradient(135deg, var(--gold2) 0%, #f0e0b8 40%, var(--ice2) 100%); -webkit-background-clip: text; background-clip: text; opacity: 0; animation: fadeUp 0.9s 0.4s forwards; }
+    .hero-sub { font-size: 0.72rem; letter-spacing: 0.2em; color: var(--muted); margin-top: 1.4rem; opacity: 0; animation: fadeUp 0.8s 0.7s forwards; }
+    .hero-desc { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 300; font-style: italic; color: rgba(216,223,232,0.6); margin-top: 2rem; line-height: 1.7; max-width: 560px; margin-left: auto; margin-right: auto; opacity: 0; animation: fadeUp 0.8s 1s forwards; }
+    .hero-cta { margin-top: 3rem; opacity: 0; animation: fadeUp 0.8s 1.2s forwards; }
+    .btn { display: inline-block; padding: 0.75rem 2.2rem; font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(201,169,110,0.5); color: var(--gold2); background: transparent; transition: all 0.35s ease; position: relative; overflow: hidden; }
+    .btn::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,169,110,0.15), rgba(201,169,110,0.05)); transform: translateX(-100%); transition: transform 0.35s ease; }
+    .btn:hover::before { transform: translateX(0); }
+    .btn:hover { border-color: var(--gold2); color: #fff; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    .scroll-line { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; animation: fadeUp 0.8s 1.6s forwards; z-index: 2; }
+    .scroll-line span { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+    .scroll-line-bar { width: 1px; height: 48px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%, 100% { transform: scaleY(1); opacity: 1; } 50% { transform: scaleY(0.6); opacity: 0.4; } }
+    section { padding: 7rem 2rem; position: relative; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; display: flex; align-items: center; gap: 1rem; }
+    .section-label::after { content: ''; flex: 1; max-width: 60px; height: 1px; background: var(--gold); opacity: 0.4; }
+    .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.4rem,5vw,3.6rem); font-weight: 300; line-height: 1.1; color: var(--text); margin-bottom: 3rem; }
+    #about { background: var(--bg2); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-text p { font-size: 0.82rem; line-height: 1.9; color: rgba(216,223,232,0.7); margin-bottom: 1.2rem; }
+    .about-text p strong { color: var(--gold2); font-weight: 500; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .stat-card { background: var(--surface); border: 1px solid var(--border); padding: 1.6rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .stat-card::before { content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 0; background: linear-gradient(to bottom, var(--gold), var(--ice)); transition: height 0.4s ease; }
+    .stat-card:hover { border-color: rgba(201,169,110,0.3); transform: translateY(-3px); }
+    .stat-card:hover::before { height: 100%; }
+    .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: var(--gold2); line-height: 1; margin-bottom: 0.4rem; }
+    .stat-label { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+    #projects { background: var(--bg); }
+    .projects-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .project-card { background: var(--bg3); border: 1px solid var(--border); padding: 2.4rem 2rem; position: relative; overflow: hidden; transition: all 0.4s ease; cursor: pointer; }
+    .project-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,169,110,0.05), rgba(126,184,212,0.05)); opacity: 0; transition: opacity 0.4s; }
+    .project-card:hover { transform: translateY(-6px); border-color: rgba(201,169,110,0.25); box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,169,110,0.1); }
+    .project-card:hover::after { opacity: 1; }
+    .project-num { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold); opacity: 0.6; margin-bottom: 2rem; display: block; }
+    .project-icon { font-size: 2rem; margin-bottom: 1.2rem; display: block; transition: transform 0.3s; }
+    .project-card:hover .project-icon { transform: scale(1.1) rotate(-5deg); }
+    .project-name { font-family: 'Cormorant Garamond', serif; font-size: 1.45rem; font-weight: 400; color: var(--text); margin-bottom: 0.8rem; line-height: 1.2; }
+    .project-desc { font-size: 0.72rem; line-height: 1.7; color: var(--muted); }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .tag { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.7rem; border: 1px solid var(--border); color: var(--muted); transition: all 0.3s; }
+    .project-card:hover .tag { border-color: rgba(201,169,110,0.3); color: var(--gold); }
+    .project-arrow { position: absolute; bottom: 1.8rem; right: 2rem; font-size: 1.2rem; color: var(--muted); transition: all 0.3s; opacity: 0; transform: translate(-5px,5px); }
+    .project-card:hover .project-arrow { opacity: 1; transform: translate(0,0); color: var(--gold2); }
+    #skills { background: var(--bg2); }
+    .skills-layout { display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start; }
+    .skills-intro { position: sticky; top: 8rem; }
+    .skills-intro p { font-size: 0.8rem; line-height: 1.8; color: var(--muted); }
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .skill-group { background: var(--surface); border: 1px solid var(--border); padding: 1.8rem; transition: border-color 0.3s; }
+    .skill-group:hover { border-color: rgba(201,169,110,0.2); }
+    .skill-group-title { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--border); }
+    .skill-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.9rem; }
+    .skill-item:last-child { margin-bottom: 0; }
+    .skill-name { font-size: 0.73rem; color: rgba(216,223,232,0.75); }
+    .skill-bar { width: 90px; height: 2px; background: var(--border); position: relative; overflow: hidden; }
+    .skill-fill { position: absolute; top: 0; left: 0; bottom: 0; background: linear-gradient(to right, var(--gold), var(--ice)); border-radius: 1px; }
+    #contact { background: var(--bg); }
+    .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .contact-text p { font-size: 0.8rem; line-height: 1.8; color: var(--muted); margin-bottom: 2.5rem; }
+    .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+    .contact-link { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text); font-size: 0.75rem; padding: 1rem 1.2rem; border: 1px solid var(--border); background: var(--surface); transition: all 0.3s; }
+    .contact-link:hover { border-color: rgba(201,169,110,0.4); color: var(--gold2); transform: translateX(6px); }
+    .contact-link-icon { font-size: 1rem; opacity: 0.7; }
+    .contact-link-label { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-left: auto; }
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+    .form-group input, .form-group textarea { background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 0.78rem; padding: 0.85rem 1rem; outline: none; transition: border-color 0.3s; resize: none; }
+    .form-group input:focus, .form-group textarea:focus { border-color: rgba(201,169,110,0.5); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: var(--muted); opacity: 0.5; }
+    footer { border-top: 1px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg2); }
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 0.2em; color: var(--gold); }
+    .footer-text { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--muted); }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    @media (max-width: 900px) { nav { padding: 1.2rem 1.5rem; } .nav-links { gap: 1.5rem; } .about-grid, .contact-layout, .skills-layout { grid-template-columns: 1fr; gap: 3rem; } .projects-grid { grid-template-columns: 1fr 1fr; } .skills-intro { position: static; } }
+    @media (max-width: 600px) { .nav-links { display: none; } .projects-grid { grid-template-columns: 1fr; } .about-stats { grid-template-columns: 1fr 1fr; } .skills-grid { grid-template-columns: 1fr; } section { padding: 5rem 1.2rem; } footer { flex-direction: column; gap: 0.8rem; text-align: center; } }
+  </style>
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="logo">HEDAN.</div>
-        <ul class="nav-links">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-subtitle">Arts & Technology @ SKKU</div>
-        <h1 class="hero-title">Creative Technologist <br>& <span>AI Visionary</span></h1>
-        <p class="hero-desc">
-            Bridging the gap between art, film, advertising, and modern data-driven technology to build interactive experiences.
-        </p>
-        <a href="#projects" class="btn">View My Work</a>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <h2 class="section-title">About Me</h2>
-        <div class="about-content">
-            <div class="about-visual">
-                <div class="about-box">
-                    Creative Logic
-                </div>
-            </div>
-            <div class="about-text">
-                <p>Hello! I am <strong>HEDAN</strong>, a student majoring in Arts and Technology at Sungkyunkwan University (SKKU).</p>
-                <p>I have a deep passion for <strong>AI visual content, film production, advertising, and creative technology</strong>. I love exploring how artificial intelligence can empower storytellers and reshape the digital advertising landscape.</p>
-                <p>Currently, my focus is on building interactive dashboards and creative web projects. I frequently utilize tools like <strong>Streamlit</strong> alongside modern AI models to create applications that are not only highly functional but visually captivating.</p>
-            </div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+  <nav>
+    <a href="#hero" class="nav-logo">HEDAN</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <section id="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="hero-content">
+      <p class="hero-tag">Arts &amp; Technology · SKKU</p>
+      <h1 class="hero-name">HEDAN</h1>
+      <p class="hero-sub">Creative Technologist &nbsp;/&nbsp; AI Visual Artist &nbsp;/&nbsp; Dashboard Builder</p>
+      <p class="hero-desc">Bridging the boundary between artistic vision and technological innovation — building worlds at the intersection of cinema, data, and artificial intelligence.</p>
+      <div class="hero-cta"><a href="#projects" class="btn">View My Work</a></div>
+    </div>
+    <div class="scroll-line">
+      <span>Scroll</span>
+      <div class="scroll-line-bar"></div>
+    </div>
+  </section>
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="reveal">
+          <p class="section-label">About</p>
+          <h2 class="section-title">Where Art Meets<br/><em>Technology</em></h2>
+          <div class="about-text">
+            <p>I'm a creative technologist studying <strong>Arts and Technology at Sungkyunkwan University (SKKU)</strong>, exploring the space where human creativity and machine intelligence converge.</p>
+            <p>My work spans <strong>AI visual content</strong>, film production, advertising strategy, and interactive web experiences. I find beauty in data visualization and narrative in code.</p>
+            <p>I build <strong>interactive dashboards and creative web projects</strong> using Streamlit and AI tools, transforming complex information into compelling visual stories.</p>
+          </div>
+          <br/><a href="#contact" class="btn">Let's Collaborate</a>
         </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2 class="section-title">Featured Projects</h2>
-        <div class="projects-grid">
-            
-            <!-- Project 1 -->
-            <div class="project-card">
-                <div class="project-icon">✦</div>
-                <h3 class="project-title">Art Gallery Dashboard</h3>
-                <p class="project-desc">An interactive digital gallery built with Streamlit. It allows users to navigate through various AI-generated visual artworks, filtering by themes, color palettes, and emotional tones.</p>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="project-card">
-                <div class="project-icon">▶</div>
-                <h3 class="project-title">Film Production Dashboard</h3>
-                <p class="project-desc">A data-driven creative tool designed for filmmakers. It visualizes pre-production timelines, budget distributions, and uses AI to generate mood boards based on script inputs.</p>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card">
-                <div class="project-icon">❖</div>
-                <h3 class="project-title">SNS Marketing Dashboard</h3>
-                <p class="project-desc">An analytics and advertising hub that tracks social media campaign metrics in real-time. Features integrated AI to suggest optimal posting times and visual ad copy improvements.</p>
-            </div>
-
+        <div class="about-stats reveal reveal-delay-2">
+          <div class="stat-card"><div class="stat-num">3+</div><div class="stat-label">Creative Projects</div></div>
+          <div class="stat-card"><div class="stat-num">AI</div><div class="stat-label">Visual Tooling</div></div>
+          <div class="stat-card"><div class="stat-num">∞</div><div class="stat-label">Creative Vision</div></div>
+          <div class="stat-card"><div class="stat-num">SKKU</div><div class="stat-label">Arts &amp; Technology</div></div>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills">
-        <h2 class="section-title">Core Competencies</h2>
-        <div class="skills-container">
-            <div class="skill-tag">AI Visual Content</div>
-            <div class="skill-tag">Film Production</div>
-            <div class="skill-tag">Advertising Strategy</div>
-            <div class="skill-tag">Creative Technology</div>
-            <div class="skill-tag">Streamlit</div>
-            <div class="skill-tag">Python</div>
-            <div class="skill-tag">Interactive Dashboards</div>
-            <div class="skill-tag">Generative AI Tools</div>
-            <div class="skill-tag">UI/UX Design</div>
-            <div class="skill-tag">Prompt Engineering</div>
+      </div>
+    </div>
+  </section>
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label reveal">Projects</p>
+      <h2 class="section-title reveal">Selected Works</h2>
+      <div class="projects-grid">
+        <div class="project-card reveal">
+          <span class="project-num">01 / 03</span>
+          <span class="project-icon">🎨</span>
+          <h3 class="project-name">Art Gallery Dashboard</h3>
+          <p class="project-desc">An interactive data dashboard exploring art collections, exhibition analytics, and visitor engagement patterns through immersive visualization.</p>
+          <div class="project-tags"><span class="tag">Streamlit</span><span class="tag">Data Viz</span><span class="tag">AI</span></div>
+          <span class="project-arrow">→</span>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact">
-        <h2 class="section-title">Let's Connect</h2>
-        <div class="contact-box">
-            <p>I'm always open to discussing new projects, creative ideas, or opportunities in AI and visual technology.</p>
-            <a href="mailto:hello@example.com" class="btn">Send an Email</a>
+        <div class="project-card reveal reveal-delay-1">
+          <span class="project-num">02 / 03</span>
+          <span class="project-icon">🎬</span>
+          <h3 class="project-name">Film Production Dashboard</h3>
+          <p class="project-desc">A comprehensive production management tool tracking scenes, crew, schedules, and budgets across cinematic projects with elegant visual reporting.</p>
+          <div class="project-tags"><span class="tag">Streamlit</span><span class="tag">Film</span><span class="tag">Analytics</span></div>
+          <span class="project-arrow">→</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2026 Hedan. Arts & Technology at SKKU. All Rights Reserved.</p>
-    </footer>
-
+        <div class="project-card reveal reveal-delay-2">
+          <span class="project-num">03 / 03</span>
+          <span class="project-icon">📱</span>
+          <h3 class="project-name">SNS Marketing Dashboard</h3>
+          <p class="project-desc">Real-time social media analytics platform measuring campaign performance, audience sentiment, and content reach with AI-powered insights.</p>
+          <div class="project-tags"><span class="tag">AI Tools</span><span class="tag">Marketing</span><span class="tag">Analytics</span></div>
+          <span class="project-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="skills">
+    <div class="section-inner">
+      <div class="skills-layout">
+        <div class="skills-intro reveal">
+          <p class="section-label">Skills</p>
+          <h2 class="section-title">Creative<br/>Arsenal</h2>
+          <p>A blend of technical proficiency and artistic sensibility — from writing Python pipelines to composing visual narratives, I approach every tool as an expressive medium.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group reveal">
+            <div class="skill-group-title">Creative</div>
+            <div class="skill-item"><span class="skill-name">AI Visual Content</span><div class="skill-bar"><div class="skill-fill" style="width:92%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Film Production</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Advertising Design</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Visual Storytelling</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+          </div>
+          <div class="skill-group reveal reveal-delay-1">
+            <div class="skill-group-title">Technical</div>
+            <div class="skill-item"><span class="skill-name">Python</span><div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Streamlit</span><div class="skill-bar"><div class="skill-fill" style="width:90%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Data Visualization</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">HTML / CSS / JS</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+          </div>
+          <div class="skill-group reveal reveal-delay-2">
+            <div class="skill-group-title">AI Tools</div>
+            <div class="skill-item"><span class="skill-name">Generative AI</span><div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Prompt Engineering</span><div class="skill-bar"><div class="skill-fill" style="width:84%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">AI Image / Video</span><div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></div>
+          </div>
+          <div class="skill-group reveal reveal-delay-3">
+            <div class="skill-group-title">Production</div>
+            <div class="skill-item"><span class="skill-name">Cinematography</span><div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">Video Editing</span><div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></div>
+            <div class="skill-item"><span class="skill-name">SNS Strategy</span><div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-layout">
+        <div class="reveal">
+          <p class="section-label">Contact</p>
+          <h2 class="section-title">Let's Create<br/>Something</h2>
+          <p>Open to creative collaborations, research projects, and interesting conversations about art, technology, and the future of visual storytelling.</p>
+          <div class="contact-links">
+            <a href="mailto:hedan@skku.edu" class="contact-link"><span class="contact-link-icon">✉</span>hedan@skku.edu<span class="contact-link-label">Email</span></a>
+            <a href="#" class="contact-link"><span class="contact-link-icon">🐙</span>github.com/hedan<span class="contact-link-label">GitHub</span></a>
+            <a href="#" class="contact-link"><span class="contact-link-icon">📸</span>@hedan.art<span class="contact-link-label">Instagram</span></a>
+            <a href="#" class="contact-link"><span class="contact-link-icon">💼</span>linkedin / hedan<span class="contact-link-label">LinkedIn</span></a>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="contact-form">
+            <div class="form-group"><label>Name</label><input type="text" placeholder="Your name" /></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com" /></div>
+            <div class="form-group"><label>Message</label><textarea rows="5" placeholder="Tell me about your project..."></textarea></div>
+            <div class="form-submit"><a href="#" class="btn" style="display:inline-block">Send Message</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer>
+    <span class="footer-logo">HEDAN</span>
+    <span class="footer-text">Arts &amp; Technology · Sungkyunkwan University · Seoul</span>
+    <span class="footer-text">© 2026</span>
+  </footer>
+  <script>
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-4+'px';cursor.style.top=my-4+'px';});
+    (function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx-16+'px';ring.style.top=ry-16+'px';requestAnimationFrame(animRing);})();
+    document.querySelectorAll('a,button,.project-card,.stat-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.transform='scale(1.5)';ring.style.borderColor='rgba(201,169,110,0.7)';});
+      el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.transform='scale(1)';ring.style.borderColor='rgba(201,169,110,0.4)';});
+    });
+    const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+    const sections=document.querySelectorAll('section[id]');
+    window.addEventListener('scroll',()=>{const y=window.scrollY+120;sections.forEach(sec=>{const link=document.querySelector(`.nav-links a[href="#${sec.id}"]`);if(link){if(y>=sec.offsetTop&&y<sec.offsetTop+sec.offsetHeight){link.style.color='var(--gold2)';}else{link.style.color='';}}});});
+  </script>
 </body>
 </html>
