@@ -1,117 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEDAN | Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
 
+        /* CSS Variables */
+        :root {
+            --bg-color: #0d0e15;
+            --surface-color: #1a1c29;
+            --text-main: #f0f2f5;
+            --text-muted: #a0a4b8;
+            --accent-gradient: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            --accent-gradient-2: linear-gradient(135deg, #ff0844 0%, #ffb199 100%);
+            --accent-gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --nav-height: 70px;
+        }
 
-HEDAN
-		ABOUT
-		PROJECTS
-		SKILLS
-		CONTACT
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
 
+        html {
+            scroll-behavior: smooth;
+        }
 
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-ARTS & TECHNOLOGY · SKKU
-HEDAN
-Creative Technologist  /  AI Visual Artist  /  Dashboard Builder
-Bridging the boundary between artistic vision and technological innovation — building worlds at the intersection of cinema, data, and artificial intelligence.
-VIEW MY WORK
-SCROLL
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-ABOUT
-Where Art Meets Technology
-I'm a creative technologist studying Arts and Technology at Sungkyunkwan University (SKKU), exploring the space where human creativity and machine intelligence converge.
-My work spans AI visual content, film production, advertising strategy, and interactive web experiences. I find beauty in data visualization and narrative in code.
-I build interactive dashboards and creative web projects using Streamlit and AI tools, transforming complex information into compelling visual stories.
+        ul {
+            list-style: none;
+        }
 
-LET'S COLLABORATE
-3+
-CREATIVE PROJECTS
-AI
-VISUAL TOOLING
-∞
-CREATIVE VISION
-SKKU
-ARTS & TECHNOLOGY
-PROJECTS
-Selected Works
-01 / 03
-🎨
-Art Gallery Dashboard
-An interactive data dashboard exploring art collections, exhibition analytics, and visitor engagement patterns through immersive visualization.
-STREAMLIT
-DATA VIZ
-AI
-→
-02 / 03
-🎬
-Film Production Dashboard
-A comprehensive production management tool tracking scenes, crew, schedules, and budgets across cinematic projects with elegant visual reporting.
-STREAMLIT
-FILM
-ANALYTICS
-→
-03 / 03
-📱
-SNS Marketing Dashboard
-Real-time social media analytics platform measuring campaign performance, audience sentiment, and content reach with AI-powered insights.
-AI TOOLS
-MARKETING
-ANALYTICS
-→
-SKILLS
-Creative Arsenal
-A blend of technical proficiency and artistic sensibility — from writing Python pipelines to composing visual narratives, I approach every tool as an expressive medium.
-CREATIVE
-AI Visual Content
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(13, 14, 21, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-Film Production
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-Advertising Design
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
 
-Visual Storytelling
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
 
-TECHNICAL
-Python
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
 
-Streamlit
+        /* Sections General */
+        section {
+            min-height: 100vh;
+            padding: 100px 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
 
-Data Visualization
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            background: var(--accent-gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-HTML / CSS / JS
+        /* Hero Section */
+        #hero {
+            align-items: flex-start;
+            background: radial-gradient(circle at top right, rgba(106, 17, 203, 0.1), transparent 40%),
+                        radial-gradient(circle at bottom left, rgba(37, 117, 252, 0.1), transparent 40%);
+        }
 
-AI TOOLS
-Generative AI
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
 
-Prompt Engineering
+        .hero-title {
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
 
-AI Image / Video
+        .hero-title span {
+            background: var(--accent-gradient-2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-PRODUCTION
-Cinematography
+        .hero-desc {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
 
-Video Editing
+        .btn {
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+        }
 
-SNS Strategy
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(106, 17, 203, 0.3);
+        }
 
-CONTACT
-Let's Create Something
-Open to creative collaborations, research projects, and interesting conversations about art, technology, and the future of visual storytelling.
-✉
-hedan@skku.edu
-EMAIL
-🐙
-github.com/hedan
-GITHUB
-📸
-@hedan.art
-INSTAGRAM
-💼
-linkedin / hedan
-LINKEDIN
-NAME
+        /* About Section */
+        #about {
+            background-color: var(--surface-color);
+        }
 
-EMAIL
+        .about-content {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
 
-MESSAGE
-SEND MESSAGE
-HEDAN
-Arts & Technology · Sungkyunkwan University · Seoul
-© 2026
+        .about-text {
+            flex: 1;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text strong {
+            color: var(--text-main);
+        }
+
+        .about-visual {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-box {
+            width: 100%;
+            height: 350px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-box::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--accent-gradient);
+            filter: blur(80px);
+            border-radius: 50%;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--surface-color);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(106, 17, 203, 0.5);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--accent-gradient-3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Skills Section */
+        #skills {
+            background-color: var(--surface-color);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            padding: 12px 25px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-gradient);
+            border-color: transparent;
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+        }
+
+        .contact-box {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+            padding: 4rem 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--surface-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Can be replaced with a hamburger menu */
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            section {
+                padding: 80px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">HEDAN.</div>
+        <ul class="nav-links">
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-subtitle">Arts & Technology @ SKKU</div>
+        <h1 class="hero-title">Creative Technologist <br>& <span>AI Visionary</span></h1>
+        <p class="hero-desc">
+            Bridging the gap between art, film, advertising, and modern data-driven technology to build interactive experiences.
+        </p>
+        <a href="#projects" class="btn">View My Work</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-visual">
+                <div class="about-box">
+                    Creative Logic
+                </div>
+            </div>
+            <div class="about-text">
+                <p>Hello! I am <strong>HEDAN</strong>, a student majoring in Arts and Technology at Sungkyunkwan University (SKKU).</p>
+                <p>I have a deep passion for <strong>AI visual content, film production, advertising, and creative technology</strong>. I love exploring how artificial intelligence can empower storytellers and reshape the digital advertising landscape.</p>
+                <p>Currently, my focus is on building interactive dashboards and creative web projects. I frequently utilize tools like <strong>Streamlit</strong> alongside modern AI models to create applications that are not only highly functional but visually captivating.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-icon">✦</div>
+                <h3 class="project-title">Art Gallery Dashboard</h3>
+                <p class="project-desc">An interactive digital gallery built with Streamlit. It allows users to navigate through various AI-generated visual artworks, filtering by themes, color palettes, and emotional tones.</p>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-icon">▶</div>
+                <h3 class="project-title">Film Production Dashboard</h3>
+                <p class="project-desc">A data-driven creative tool designed for filmmakers. It visualizes pre-production timelines, budget distributions, and uses AI to generate mood boards based on script inputs.</p>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-icon">❖</div>
+                <h3 class="project-title">SNS Marketing Dashboard</h3>
+                <p class="project-desc">An analytics and advertising hub that tracks social media campaign metrics in real-time. Features integrated AI to suggest optimal posting times and visual ad copy improvements.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Core Competencies</h2>
+        <div class="skills-container">
+            <div class="skill-tag">AI Visual Content</div>
+            <div class="skill-tag">Film Production</div>
+            <div class="skill-tag">Advertising Strategy</div>
+            <div class="skill-tag">Creative Technology</div>
+            <div class="skill-tag">Streamlit</div>
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">Interactive Dashboards</div>
+            <div class="skill-tag">Generative AI Tools</div>
+            <div class="skill-tag">UI/UX Design</div>
+            <div class="skill-tag">Prompt Engineering</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="contact-box">
+            <p>I'm always open to discussing new projects, creative ideas, or opportunities in AI and visual technology.</p>
+            <a href="mailto:hello@example.com" class="btn">Send an Email</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Hedan. Arts & Technology at SKKU. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
